@@ -6,13 +6,13 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "2048"
     vb.cpus = "2"
-  end
+   end
 
   config.vm.define "docker" do |docker|
-    docker.vm.box = "ubuntu/jammy"
-    docker.vm.network "private_network", ip: "192.168.33.224"
-    docker.vm.hostname = "docker"
-    docker.vm.provision "shell", inline: <<-SHELL
+  docker.vm.box = "ubuntu/jammy"
+  docker.vm.network "private_network", ip: "192.168.33.224"
+  docker.vm.hostname = "docker"
+  docker.vm.provision "shell", inline: <<-SHELL
       apt clean
       apt-get update
       apt-get remove docker docker-engine docker.io containerd runc -y
@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       apt-get update -y
       apt-get install docker.io -y
       usermod -aG docker vagrant
-    SHELL
-  end
-
+	  SHELL
+	  end
+	  
 end
